@@ -9,28 +9,34 @@ function openWhatsApp(text) {
   window.open(waLink(text), "_blank", "noopener");
 }
 
-// Enlaces genéricos de WhatsApp (encabezado y botón flotante)
-document.querySelectorAll(".js-wa").forEach((link) => {
-  link.href = waLink(link.dataset.waText);
-  link.target = "_blank";
-  link.rel = "noopener";
-});
+// Año del copyright del pie, siempre actualizado
+document.getElementById("year").textContent = new Date().getFullYear();
 
-// Menú móvil
-const navToggle = document.querySelector(".nav-toggle");
-const nav = document.getElementById("nav");
+// Enlaces de la barra: "Sobre mí" se centra con el nombre y "Contacto" con el contenido carrusel.
+// Solo en pantallas anchas; en las angostas los bloques van apilados y los enlaces quedan en los extremos.
+const navAlign = [
+  [document.querySelector(".nav__link--left"), document.querySelector(".hero__title h1")],
+  [document.querySelector(".nav__link--right"), document.querySelector(".topic-card")],
+];
+const wideScreen = window.matchMedia("(min-width: 901px)");
 
-navToggle.addEventListener("click", () => {
-  const open = nav.classList.toggle("is-open");
-  navToggle.setAttribute("aria-expanded", String(open));
-});
+function centerX(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.left + rect.width / 2;
+}
 
-nav.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("is-open");
-    navToggle.setAttribute("aria-expanded", "false");
+function alignNavLinks() {
+  navAlign.forEach(([link, target]) => {
+    link.style.transform = "";
+    if (!wideScreen.matches) return;
+    link.style.transform = `translateX(${centerX(target) - centerX(link)}px)`;
   });
-});
+}
+
+alignNavLinks();
+window.addEventListener("resize", alignNavLinks);
+window.addEventListener("load", alignNavLinks);
+document.fonts?.ready.then(alignNavLinks);
 
 // Carrusel de fondo del hero
 const SLIDE_MS = 7000;

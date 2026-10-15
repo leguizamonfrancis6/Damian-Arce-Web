@@ -114,7 +114,7 @@ mark.todo {
 .btn--primary:hover { background: var(--green-900); }
 .btn--sm { padding: 9px 14px; font-size: 0.875rem; }
 .btn--block { width: 100%; }
-.btn:focus-visible, .chip:focus-visible, summary:focus-visible {
+.btn:focus-visible, .chip:focus-visible {
   outline: 2px solid var(--green-600);
   outline-offset: 2px;
 }
@@ -128,28 +128,61 @@ mark.todo {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
+/* Tres columnas: Sobre mí a la izquierda, logo en el centro, Contacto a la derecha */
 .header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 24px;
   height: var(--header-h);
 }
 /* Franja verde del logo: ocupa todo el alto de la barra, tapando también su borde inferior */
-.brand { display: flex; align-self: stretch; margin-bottom: -1px; text-decoration: none; }
-.brand__logo { width: 88px; height: 100%; object-fit: cover; }
-
-.nav { display: flex; gap: 28px; margin-left: auto; margin-right: 24px; }
-.nav a {
-  padding: 4px 0;
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: var(--ink-soft);
-  border-bottom: 1px solid transparent;
-  transition: color .2s, border-color .2s;
+.brand { grid-column: 2; grid-row: 1; position: relative; display: flex; align-self: stretch; margin-bottom: -1px; text-decoration: none; }
+/* Líneas verdes verticales a 10px de cada lado del logo */
+.brand::before,
+.brand::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--green-700);
 }
-.nav a:hover { color: var(--green-700); border-bottom-color: var(--gold); }
+.brand::before { left: -12px; }
+.brand::after { right: -12px; }
+/* Más angosto que la imagen: recorta el verde de los costados y deja el escudo con poco margen */
+.brand__logo { width: 64px; height: 100%; object-fit: cover; }
 
-.nav-toggle { display: none; }
+/* Los enlaces se ubican directo en las columnas de la barra */
+.nav { display: contents; }
+.nav__link--left { grid-column: 1; grid-row: 1; justify-self: start; }
+.nav__link--right { grid-column: 3; grid-row: 1; justify-self: end; }
+/* Serif en mayúsculas, chicos y finos: tienen carácter pero el logo sigue mandando */
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font: 600 0.78rem/1 var(--serif);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--green-700);
+  /* Subrayado dorado que crece desde el centro al pasar el mouse */
+  background: linear-gradient(var(--gold), var(--gold)) center bottom / 0 1px no-repeat;
+  transition: color .2s, background-size .3s ease;
+}
+.nav a:hover { color: var(--green-900); background-size: 100% 1px; }
+.nav a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+/* Línea verde vertical del lado que mira al logo: enmarca el centro de la barra */
+.nav a::before {
+  content: "";
+  width: 2px;
+  height: 1.1em;
+  background: var(--green-700);
+}
+/* Descuenta el espaciado que queda después de la última letra, para que la distancia sea igual en los dos */
+.nav__link--left::before { order: 1; margin-left: -.18em; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -174,9 +207,10 @@ mark.todo {
 .hero > .hero__title {
   max-width: var(--container);
   margin-bottom: 24px;
-  /* Fuera del flujo, para que el contenido carrusel quede centrado en la altura de todo el hero */
+  /* Fuera del flujo y centrado en la altura del hero, a la izquierda del contenido carrusel */
   position: absolute;
-  top: 48px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   right: 0;
   /* El bloque queda a la izquierda, con el ancho del nombre; "Abogado" se centra debajo */
@@ -200,6 +234,17 @@ mark.todo {
   text-transform: uppercase;
   color: var(--gold-soft);
   opacity: .85;
+}
+.hero__title h1,
+.hero__title p { grid-column: 1; }
+/* Barra vertical a la derecha del nombre: ocupa el alto del nombre y "Abogado" juntos */
+.hero__title::after {
+  content: "";
+  grid-column: 2;
+  grid-row: 1 / 3;
+  width: 2px;
+  margin-left: 28px;
+  background: var(--gold-soft);
 }
 
 /* Carrusel de fondo */
@@ -277,9 +322,10 @@ mark.todo {
 .chip-groups { display: grid; margin-bottom: 24px; }
 .chips {
   grid-area: 1 / 1;
+  /* Las preguntas van en lista, una debajo de la otra */
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
   transition: opacity .6s ease, visibility .6s;
 }
@@ -307,6 +353,21 @@ mark.todo {
 
 /* ---------- Secciones ---------- */
 .section { padding: 88px 0; }
+/* Sobre mí (incluye las áreas de práctica): 15px de aire con la barra fija y 50px al final */
+#sobre-mi {
+  padding: 15px 0 50px;
+  /* Ocupa al menos toda la pantalla debajo de la barra: al ir a Sobre mí no asoma Contacto */
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+}
+
+/* Áreas de práctica, debajo del texto y la foto */
+#practicas {
+  /* 10px entre la base del marco de la foto y la línea que abre la lista de áreas */
+  margin-top: 10px;
+}
+/* La misma distancia entre cada área y las líneas que la separan */
+#practicas .area { padding: 15px 0; }
 .section--white { background: var(--white); }
 .section--green { background: var(--green-700); color: #e8f0ed; }
 .section--green h2, .section--green h3 { color: #fff; }
@@ -338,7 +399,7 @@ mark.todo {
   border-bottom: 1px solid var(--line);
 }
 .area h3 { color: var(--green-700); }
-.area p { color: var(--ink-soft); }
+.area p { color: var(--ink-soft); margin-bottom: 6px; }
 
 .dash-list {
   list-style: none;
@@ -346,7 +407,7 @@ mark.todo {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 32px;
+  gap: 4px 32px;
   font-size: 0.92rem;
 }
 .dash-list li { position: relative; padding-left: 20px; }
@@ -359,40 +420,6 @@ mark.todo {
   height: 1px;
   background: var(--gold);
 }
-
-/* ---------- Cómo trabajo (dentro de Áreas) ---------- */
-.how { margin-top: 80px; }
-.steps {
-  list-style: none;
-  padding: 0;
-  margin: 40px 0 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-}
-.step { position: relative; }
-.step:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: 56px;
-  right: -24px;
-  height: 1px;
-  background: #b9c6c1;
-}
-.step__num {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid var(--gold);
-  border-radius: 50%;
-  font-family: var(--serif);
-  color: var(--green-700);
-  background: var(--white);
-  margin-bottom: 20px;
-}
-.step h3 { margin-bottom: 8px; }
 
 /* ---------- Sobre mí ---------- */
 .about {
@@ -413,68 +440,47 @@ mark.todo {
 }
 .facts dt { font-size: 0.85rem; color: var(--gold-soft); }
 .facts dd { margin: 0; color: #fff; }
+/* En Sobre mí el fondo es blanco: líneas grises y texto oscuro */
+.about .facts { border-top-color: var(--line); }
+.about .facts > div { border-bottom-color: var(--line); }
+.about .facts dt { color: var(--gold); }
+.about .facts dd { color: var(--ink); }
 
-.about__photo { margin: 0; justify-self: end; max-width: 440px; width: 100%; }
-.about__photo-frame { position: relative; margin: 0 24px 0 0; }
+/* La foto no define la altura de la fila: se estira al alto del texto, desde la línea dorada
+   de "Sobre mí" hasta la última línea de los datos, y el marco queda cuadrado dentro de ese alto */
+.about__photo { position: relative; align-self: stretch; margin: 0; }
+.about__photo-frame {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
 /* Marco dorado detrás de la silueta recortada: la base coincide con el corte de la foto */
 .about__photo-frame::before {
   content: "";
   position: absolute;
   inset: 24px -24px 0 24px;
-  border: 1px solid var(--gold-soft);
+  border: 1px solid var(--gold);
   border-radius: 8px;
 }
 .about__photo-frame img {
   position: relative;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .35));
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .18));
 }
-
-/* ---------- Preguntas (dentro de Contacto) ---------- */
-.faq {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 64px;
-  align-items: start;
-  margin-top: 88px;
-  padding-top: 72px;
-  border-top: 1px solid rgba(255,255,255,.12);
-}
-.faq__head h2 { margin-bottom: 12px; }
-.faq__head p { color: #9fb0b7; }
-.faq__list { border-top: 1px solid rgba(255,255,255,.14); }
-.faq__list details { border-bottom: 1px solid rgba(255,255,255,.14); }
-.faq__list summary {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 0;
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  color: #fff;
-  cursor: pointer;
-}
-.faq__list summary::-webkit-details-marker { display: none; }
-.faq__list summary::after {
-  content: "+";
-  font-family: var(--sans);
-  font-size: 1.3rem;
-  font-weight: 300;
-  color: var(--gold-soft);
-  transition: transform .2s;
-}
-.faq__list details[open] summary::after { transform: rotate(45deg); }
-.faq__list details p { color: #c9d2d6; padding: 0 32px 18px 0; margin: 0; }
 
 /* ---------- Contacto ---------- */
 .contact {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Columna de datos un poco más ancha: la dirección del estudio entra en una sola línea */
+  grid-template-columns: 1.25fr 1fr;
   gap: 64px;
-  align-items: start;
+  /* El texto de la izquierda queda centrado en la altura del formulario */
+  align-items: center;
 }
 .contact__info h2 { margin-bottom: 20px; }
 .contact__info > p { max-width: 44ch; }
@@ -519,26 +525,18 @@ mark.todo {
   font-size: 0.8rem;
   padding: 28px 0;
 }
-.footer p { margin: 0 0 6px; }
-
-/* ---------- WhatsApp flotante ---------- */
-.wa-float {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 60;
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--wa);
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,.2);
-  transition: transform .2s;
+/* Matrícula a la izquierda y copyright a la derecha; en pantallas angostas pasan a dos líneas */
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 24px;
 }
-.wa-float:hover { transform: scale(1.06); }
-.wa-float .icon { width: 28px; height: 28px; }
+.footer p { margin: 0; }
+/* Crédito en su propia línea, centrado debajo */
+.footer__credit { flex-basis: 100%; margin-top: 6px; text-align: center; }
+.footer__credit a { color: var(--gold-soft); text-decoration: none; }
+.footer__credit a:hover { text-decoration: underline; }
 
 /* ==========================================================
    Responsive
@@ -546,61 +544,24 @@ mark.todo {
 @media (max-width: 900px) {
   .hero__grid,
   .about,
-  .faq,
   .contact { grid-template-columns: 1fr; gap: 48px; }
 
   .hero { padding: 36px 0 32px; }
-  .hero > .hero__title { position: static; margin-bottom: 32px; }
+  .hero > .hero__title { position: static; transform: none; margin-bottom: 32px; }
   .hero::before { background: rgba(17, 46, 40, .88); }
   .hero__grid { justify-items: start; }
-  .about__photo { justify-self: start; max-width: 320px; }
+  /* Apilado: la foto vuelve a tener su propio tamaño debajo del texto */
+  .about__photo { justify-self: start; max-width: 320px; width: 100%; }
+  .about__photo-frame { position: relative; right: auto; margin-right: 24px; }
+  .about__photo-frame img { height: auto; }
 
   .area { grid-template-columns: 1fr; gap: 12px; }
 }
 
 @media (max-width: 760px) {
   .header__inner { gap: 12px; }
-  .header .btn--sm { margin-left: auto; }
-
-  .nav-toggle {
-    display: grid;
-    gap: 5px;
-    order: 3;
-    padding: 8px;
-    background: none;
-    border: 0;
-    cursor: pointer;
-  }
-  .nav-toggle span { width: 22px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
-  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .nav {
-    position: absolute;
-    top: var(--header-h);
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    margin: 0;
-    background: #fff;
-    border-bottom: 1px solid var(--line);
-    display: none;
-  }
-  .nav.is-open { display: flex; }
-  .nav a { padding: 14px 24px; border-top: 1px solid var(--line); font-size: 1rem; }
 
   .section { padding: 64px 0; }
-  .how { margin-top: 56px; }
-  .faq { margin-top: 56px; padding-top: 48px; gap: 24px; }
-
-  .steps { grid-template-columns: 1fr; gap: 32px; }
-  .step:not(:last-child)::after {
-    top: 48px; bottom: -24px; left: 20px; right: auto; width: 1px; height: auto;
-  }
-  .step { padding-left: 64px; }
-  .step__num { position: absolute; left: 0; top: 0; margin: 0; }
 
   .dash-list { grid-template-columns: 1fr; }
 }

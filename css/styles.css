@@ -1,0 +1,617 @@
+/* ==========================================================
+   Damián Arce · Abogado en Santa Fe
+   ========================================================== */
+
+:root {
+  --green-900: #1d4f45;
+  --green-700: #245f53;
+  --green-600: #2c6f61;
+  --green-100: #e3ece8;
+  --wa: #25d366;
+
+  --gold: #a8854f;       /* sobre fondos claros */
+  --gold-soft: #cfb27e;  /* sobre fondos oscuros */
+
+  --ink: #1d2a2e;
+  --ink-soft: #4a5558;
+  --muted: #6b7477;
+  --line: #dfe2de;
+
+  --bg: #f3f4f1;
+  --white: #ffffff;
+  --dark: #1b2a33;
+  --dark-2: #22343e;
+
+  --todo: #fdf0a6;
+
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --radius: 10px;
+  --container: 1080px;
+  --header-h: 68px;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--ink);
+}
+h1 { font-size: clamp(2.4rem, 5.2vw, 3.6rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.8rem, 3.2vw, 2.25rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.muted { color: var(--muted); }
+
+/* Oculto a la vista, visible para lectores de pantalla y buscadores */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.small { font-size: 0.85rem; }
+
+/* Datos pendientes de completar (resaltados como en el boceto) */
+mark.todo {
+  background: var(--todo);
+  color: #4a3f00;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+.icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 6px;
+  font: 500 0.95rem/1 var(--sans);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .2s, transform .2s;
+}
+.btn--primary { background: var(--green-700); color: #fff; }
+.btn--primary:hover { background: var(--green-900); }
+.btn--sm { padding: 9px 14px; font-size: 0.875rem; }
+.btn--block { width: 100%; }
+.btn:focus-visible, .chip:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+}
+
+/* ---------- Encabezado ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: var(--header-h);
+}
+/* Franja verde del logo: ocupa todo el alto de la barra, tapando también su borde inferior */
+.brand { display: flex; align-self: stretch; margin-bottom: -1px; text-decoration: none; }
+.brand__logo { width: 88px; height: 100%; object-fit: cover; }
+
+.nav { display: flex; gap: 28px; margin-left: auto; margin-right: 24px; }
+.nav a {
+  padding: 4px 0;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav a:hover { color: var(--green-700); border-bottom-color: var(--gold); }
+
+.nav-toggle { display: none; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  /* Ocupa toda la pantalla debajo de la barra fija */
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 0 40px;
+  background: var(--green-900);
+  color: #dfe9e5;
+}
+.hero > .container { flex-shrink: 0; }
+.hero__grid { flex: 1; }
+
+/* Nombre arriba del hero, alineado a la izquierda con la franja verde del logo
+   (usa el ancho normal del sitio, igual que la barra) */
+.hero > .hero__title {
+  max-width: var(--container);
+  margin-bottom: 24px;
+  /* Fuera del flujo, para que el contenido carrusel quede centrado en la altura de todo el hero */
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
+  /* El bloque queda a la izquierda, con el ancho del nombre; "Abogado" se centra debajo */
+  display: grid;
+  justify-content: start;
+  justify-items: center;
+}
+.hero__title h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--gold-soft);
+}
+.hero__title p {
+  margin: 6px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  letter-spacing: .3em;
+  /* Compensa el espaciado que queda después de la última letra, para que se vea centrado */
+  padding-left: .3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  opacity: .85;
+}
+
+/* Carrusel de fondo */
+.hero__slides { position: absolute; inset: 0; z-index: -2; }
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.6s ease, transform 8s linear;
+}
+.hero__slide.is-active { opacity: 1; transform: scale(1); }
+
+/* Velo verde para unificar las fotos con la paleta y dar contraste al texto */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(17, 46, 40, .95) 0%, rgba(17, 46, 40, .86) 45%, rgba(17, 46, 40, .62) 100%),
+    linear-gradient(0deg, rgba(17, 46, 40, .6) 0%, rgba(17, 46, 40, 0) 40%);
+}
+
+.hero__grid {
+  display: grid;
+  align-items: center;
+  /* La consulta rápida queda del lado derecho */
+  justify-items: end;
+}
+
+/* Práctica actual del carrusel: es el título principal del bloque */
+.practice-label {
+  display: inline-grid;
+  margin-bottom: 22px;
+}
+.practice-label__name {
+  grid-area: 1 / 1;
+  font: 400 clamp(2rem, 3.6vw, 2.75rem)/1.1 var(--serif);
+  color: #fff;
+  transition: opacity .6s ease, transform .6s ease, visibility .6s;
+}
+.practice-label__name[hidden] { display: block; opacity: 0; visibility: hidden; transform: translateY(6px); }
+
+/* Barrita dorada que se carga mientras dura cada imagen */
+.practice-label__bar {
+  grid-area: 2 / 1;
+  position: relative;
+  height: 2px;
+  margin-top: 14px;
+  background: rgba(255, 255, 255, .18);
+  overflow: hidden;
+}
+/* El ancho de la parte dorada lo anima main.js */
+.practice-label__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--gold-soft);
+}
+
+/* Consulta rápida: sin recuadro, directo sobre el fondo del carrusel */
+.topic-card { max-width: 560px; color: #fff; }
+/* "Asesoramiento Integral": etiqueta chica arriba del nombre de la práctica */
+.topic-card__title {
+  font: 500 0.82rem/1.2 var(--sans);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 12px;
+}
+/* Los tres grupos ocupan la misma celda: la altura no salta al cambiar de práctica */
+.chip-groups { display: grid; margin-bottom: 24px; }
+.chips {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
+  transition: opacity .6s ease, visibility .6s;
+}
+.chips[hidden] { display: flex; opacity: 0; visibility: hidden; }
+.chip {
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  font: 400 0.88rem/1.3 var(--sans);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+/* Cada pregunta es un enlace a WhatsApp: al pasar el mouse se rellena de blanco */
+.chip:hover { background: #fff; border-color: #fff; color: var(--green-900); }
+.chip:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+.topic-card__actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+/* Botón principal dorado para que resalte sobre el fondo verde */
+.btn--gold { background: var(--gold-soft); color: var(--green-900); font-weight: 600; }
+.btn--gold:hover { background: #dcc497; }
+
+/* ---------- Secciones ---------- */
+.section { padding: 88px 0; }
+.section--white { background: var(--white); }
+.section--green { background: var(--green-700); color: #e8f0ed; }
+.section--green h2, .section--green h3 { color: #fff; }
+.section--dark { background: var(--dark); color: #d9e0e3; }
+.section--dark h2 { color: #fff; }
+
+/* Línea dorada sobre los títulos de sección */
+.section h2::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  margin-bottom: 18px;
+  background: var(--gold);
+}
+.section--green h2::before,
+.section--dark h2::before { background: var(--gold-soft); }
+
+.section__head { max-width: 560px; margin-bottom: 48px; }
+.section__head h2 { margin-bottom: 14px; }
+
+/* ---------- Áreas ---------- */
+.areas { border-top: 1px solid var(--line); }
+.area {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+}
+.area h3 { color: var(--green-700); }
+.area p { color: var(--ink-soft); }
+
+.dash-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 32px;
+  font-size: 0.92rem;
+}
+.dash-list li { position: relative; padding-left: 20px; }
+.dash-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 10px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ---------- Cómo trabajo (dentro de Áreas) ---------- */
+.how { margin-top: 80px; }
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.step { position: relative; }
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 56px;
+  right: -24px;
+  height: 1px;
+  background: #b9c6c1;
+}
+.step__num {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  font-family: var(--serif);
+  color: var(--green-700);
+  background: var(--white);
+  margin-bottom: 20px;
+}
+.step h3 { margin-bottom: 8px; }
+
+/* ---------- Sobre mí ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.about__text h2 { margin-bottom: 24px; }
+
+.facts { margin: 32px 0 0; border-top: 1px solid rgba(255,255,255,.18); }
+.facts > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.facts dt { font-size: 0.85rem; color: var(--gold-soft); }
+.facts dd { margin: 0; color: #fff; }
+
+.about__photo { margin: 0; justify-self: end; max-width: 440px; width: 100%; }
+.about__photo-frame { position: relative; margin: 0 24px 0 0; }
+/* Marco dorado detrás de la silueta recortada: la base coincide con el corte de la foto */
+.about__photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 24px -24px 0 24px;
+  border: 1px solid var(--gold-soft);
+  border-radius: 8px;
+}
+.about__photo-frame img {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .35));
+}
+
+/* ---------- Preguntas (dentro de Contacto) ---------- */
+.faq {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 88px;
+  padding-top: 72px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.faq__head h2 { margin-bottom: 12px; }
+.faq__head p { color: #9fb0b7; }
+.faq__list { border-top: 1px solid rgba(255,255,255,.14); }
+.faq__list details { border-bottom: 1px solid rgba(255,255,255,.14); }
+.faq__list summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: #fff;
+  cursor: pointer;
+}
+.faq__list summary::-webkit-details-marker { display: none; }
+.faq__list summary::after {
+  content: "+";
+  font-family: var(--sans);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--gold-soft);
+  transition: transform .2s;
+}
+.faq__list details[open] summary::after { transform: rotate(45deg); }
+.faq__list details p { color: #c9d2d6; padding: 0 32px 18px 0; margin: 0; }
+
+/* ---------- Contacto ---------- */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.contact__info h2 { margin-bottom: 20px; }
+.contact__info > p { max-width: 44ch; }
+.facts--dark { border-top-color: rgba(255,255,255,.12); }
+.facts--dark dd a { color: #fff; }
+
+.contact__form {
+  background: var(--dark-2);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: grid;
+  gap: 18px;
+}
+.contact__form label { display: grid; gap: 8px; font-size: 0.85rem; color: #c9d2d6; }
+.contact__form input,
+.contact__form select,
+.contact__form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #fff;
+  font: 400 0.95rem/1.4 var(--sans);
+  color: var(--ink);
+}
+.contact__form textarea { resize: vertical; min-height: 120px; }
+.contact__form input:focus,
+.contact__form select:focus,
+.contact__form textarea:focus {
+  outline: none;
+  border-color: var(--wa);
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, .25);
+}
+.form-note { color: #9fb0b7; margin: 0; }
+.form-error { color: #ffb4a8; margin: 0; font-size: 0.85rem; }
+
+/* ---------- Pie ---------- */
+.footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(207, 178, 126, .25);
+  color: #9fb0b7;
+  font-size: 0.8rem;
+  padding: 28px 0;
+}
+.footer p { margin: 0 0 6px; }
+
+/* ---------- WhatsApp flotante ---------- */
+.wa-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+  transition: transform .2s;
+}
+.wa-float:hover { transform: scale(1.06); }
+.wa-float .icon { width: 28px; height: 28px; }
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 900px) {
+  .hero__grid,
+  .about,
+  .faq,
+  .contact { grid-template-columns: 1fr; gap: 48px; }
+
+  .hero { padding: 36px 0 32px; }
+  .hero > .hero__title { position: static; margin-bottom: 32px; }
+  .hero::before { background: rgba(17, 46, 40, .88); }
+  .hero__grid { justify-items: start; }
+  .about__photo { justify-self: start; max-width: 320px; }
+
+  .area { grid-template-columns: 1fr; gap: 12px; }
+}
+
+@media (max-width: 760px) {
+  .header__inner { gap: 12px; }
+  .header .btn--sm { margin-left: auto; }
+
+  .nav-toggle {
+    display: grid;
+    gap: 5px;
+    order: 3;
+    padding: 8px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .nav-toggle span { width: 22px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .nav.is-open { display: flex; }
+  .nav a { padding: 14px 24px; border-top: 1px solid var(--line); font-size: 1rem; }
+
+  .section { padding: 64px 0; }
+  .how { margin-top: 56px; }
+  .faq { margin-top: 56px; padding-top: 48px; gap: 24px; }
+
+  .steps { grid-template-columns: 1fr; gap: 32px; }
+  .step:not(:last-child)::after {
+    top: 48px; bottom: -24px; left: 20px; right: auto; width: 1px; height: auto;
+  }
+  .step { padding-left: 64px; }
+  .step__num { position: absolute; left: 0; top: 0; margin: 0; }
+
+  .dash-list { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .contact__form { padding: 20px; }
+  .facts > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}

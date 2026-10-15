@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Damián Arce | Abogado en Santa Fe</title>
+  <meta name="description" content="Damián Arce, abogado en Santa Fe. Daños y perjuicios, accidentes de tránsito, derecho civil y derecho ambiental. Consultas por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/img/logo-180.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Encabezado ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="brand" aria-label="Damián Arce, abogado — ir al inicio">
+        <img src="assets/img/logo-franja.jpg" alt="Logo de Damián Arce" class="brand__logo" width="88" height="69">
+      </a>
+
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#practicas">Prácticas</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a href="#" class="btn btn--primary btn--sm js-wa" data-wa-text="Hola Damián, quería hacerte una consulta.">
+        <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+        Consultar
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="inicio">
+      <!-- Carrusel de fondo: una imagen por práctica -->
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide is-active" style="background-image: url('assets/img/hero-civil.jpg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/img/hero-danos.jpg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/img/hero-ambiental.jpg')"></div>
+      </div>
+
+      <header class="container hero__title">
+        <h1>Damián Arce</h1>
+        <p>Abogado</p>
+      </header>
+
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <div class="topic-card">
+            <p class="topic-card__title">Asesoramiento Integral</p>
+            <!-- Práctica actual del carrusel: se muestra una sola y cambia junto con la imagen -->
+            <div class="practice-label">
+              <span class="practice-label__name">Derecho civil</span>
+              <span class="practice-label__name" hidden>Daños y perjuicios</span>
+              <span class="practice-label__name" hidden>Derecho ambiental</span>
+              <span class="practice-label__bar" aria-hidden="true"><span class="practice-label__fill"></span></span>
+            </div>
+            <!-- Un grupo de preguntas por práctica; cambia junto con la imagen de fondo (mismo orden).
+                 Cada pregunta abre WhatsApp con esa consulta ya escrita (el enlace lo arma main.js). -->
+            <div class="chip-groups">
+              <div class="chips" aria-label="Consultas de derecho civil" data-practice="Derecho civil">
+                <a class="chip" href="#">¿Cómo hago un contrato de alquiler?</a>
+                <a class="chip" href="#">¿Me deben plata, cómo la cobro?</a>
+                <a class="chip" href="#">¿Cómo inicio una sucesión?</a>
+                <a class="chip" href="#">¿Cómo hago un desalojo?</a>
+              </div>
+              <div class="chips" aria-label="Consultas de daños y perjuicios" data-practice="Daños y perjuicios" hidden>
+                <a class="chip" href="#">¿Me chocaron, qué puedo reclamar?</a>
+                <a class="chip" href="#">¿El seguro no me paga, qué hago?</a>
+                <a class="chip" href="#">¿Me dañaron la casa o el auto?</a>
+                <a class="chip" href="#">¿Puedo reclamar por una lesión?</a>
+              </div>
+              <div class="chips" aria-label="Consultas de derecho ambiental" data-practice="Derecho ambiental" hidden>
+                <a class="chip" href="#">¿Hay contaminación cerca de mi casa?</a>
+                <a class="chip" href="#">¿Qué hago con ruidos u olores molestos?</a>
+                <a class="chip" href="#">¿Fumigan cerca de casa, qué puedo hacer?</a>
+                <a class="chip" href="#">¿Qué es un amparo ambiental?</a>
+              </div>
+            </div>
+            <div class="topic-card__actions">
+              <a href="#" class="btn btn--gold" id="hero-wa">
+                <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+                Realizar otra consulta
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Prácticas ===== -->
+    <section class="section section--white" id="practicas">
+      <div class="container">
+        <header class="section__head">
+          <h2>En qué te puedo ayudar</h2>
+          <p class="muted">
+            Tres áreas de trabajo. Si tu caso no aparece en la lista, escribime igual:
+            te digo si lo puedo tomar o a quién te conviene consultar.
+          </p>
+        </header>
+
+        <div class="areas">
+          <article class="area">
+            <h3>Daños y perjuicios</h3>
+            <div>
+              <p>
+                Cuando alguien te causa un daño, tenés derecho a que te lo reparen. Calculo qué
+                podés reclamar y llevo adelante el reclamo ante la otra parte, la aseguradora o la Justicia.
+              </p>
+              <ul class="dash-list">
+                <li>Accidentes de tránsito</li>
+                <li>Reclamos a compañías de seguros</li>
+                <li>Daños en tu casa o tu auto</li>
+                <li>Lesiones y daño moral</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="area">
+            <h3>Derecho civil</h3>
+            <div>
+              <p>
+                Asesoramiento y juicios en los problemas legales de todos los días, para que firmes
+                tranquilo o resuelvas un conflicto que ya empezó.
+              </p>
+              <ul class="dash-list">
+                <li>Contratos y alquileres</li>
+                <li>Cobro de deudas</li>
+                <li>Sucesiones y herencias</li>
+                <li>Desalojos</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="area">
+            <h3>Derecho ambiental</h3>
+            <div>
+              <p>
+                El ambiente sano es un derecho. Represento a vecinos y comunidades frente a
+                actividades que contaminan o afectan su calidad de vida.
+              </p>
+              <ul class="dash-list">
+                <li>Contaminación de agua, aire o suelo</li>
+                <li>Ruidos y olores molestos</li>
+                <li>Fumigaciones cerca de viviendas</li>
+                <li>Amparos ambientales</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- Cómo trabajo -->
+        <div class="how" id="como-trabajo">
+          <h2>Cómo trabajo</h2>
+          <ol class="steps">
+            <li class="step">
+              <span class="step__num">1</span>
+              <h3>Me contás qué pasó</h3>
+              <p class="muted">
+                Por WhatsApp, por teléfono o en el estudio. Traé los papeles que tengas,
+                aunque te parezcan poco importantes.
+              </p>
+            </li>
+            <li class="step">
+              <span class="step__num">2</span>
+              <h3>Te explico tus opciones</h3>
+              <p class="muted">
+                Qué podés reclamar, cuánto puede demorar y cuánto cuesta. Sin letra chica.
+              </p>
+            </li>
+            <li class="step">
+              <span class="step__num">3</span>
+              <h3>Avanzamos juntos</h3>
+              <p class="muted">
+                Me ocupo del trámite y te aviso cada novedad del caso, sin que tengas que estar preguntando.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sobre mí ===== -->
+    <section class="section section--green" id="sobre-mi">
+      <div class="container about">
+        <div class="about__text">
+          <h2>Sobre mí</h2>
+          <p>
+            Soy Damián Arce, abogado recibido en la Universidad Siglo 21. Elegí especializarme
+            en derecho civil, daños y perjuicios y derecho ambiental porque son las áreas donde
+            un buen asesoramiento cambia la vida cotidiana de las personas.
+          </p>
+          <p>
+            Estoy empezando mi camino profesional y lo hago con una idea clara: atender cada caso
+            de manera personal, con dedicación y hablando claro. Vas a tratar siempre conmigo,
+            no con un intermediario.
+          </p>
+
+          <dl class="facts">
+            <div><dt>Título</dt><dd>Abogado, Universidad Siglo 21</dd></div>
+            <div><dt>Matrícula</dt><dd><mark class="todo">Tomo y folio a completar</mark></dd></div>
+            <div><dt>Atiendo en</dt><dd>Santa Fe y alrededores. Consultas virtuales en toda la provincia.</dd></div>
+          </dl>
+        </div>
+
+        <figure class="about__photo">
+          <div class="about__photo-frame">
+            <img src="assets/img/damian-retrato-recorte.png" alt="Retrato de Damián Arce, abogado" width="760" height="760" loading="lazy">
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Contacto ===== -->
+    <section class="section section--dark" id="contacto">
+      <div class="container">
+        <div class="contact">
+          <div class="contact__info">
+            <h2>Contame tu caso</h2>
+            <p>
+              Escribime y coordinamos una consulta. Toda la información que me compartas es confidencial.
+            </p>
+            <dl class="facts facts--dark">
+              <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5493425102769" target="_blank" rel="noopener">+54 9 342 510-2769</a></dd></div>
+              <div><dt>Correo</dt><dd><a href="mailto:contacto@damianarce.com.ar">contacto@damianarce.com.ar</a></dd></div>
+              <div><dt>Estudio</dt><dd><mark class="todo">Dirección del estudio</mark>, Santa Fe</dd></div>
+              <div><dt>Horario</dt><dd>Lunes a viernes, <mark class="todo">horario a definir</mark></dd></div>
+            </dl>
+          </div>
+  
+          <form class="contact__form" id="contact-form" novalidate>
+            <label>
+              Nombre
+              <input type="text" name="nombre" autocomplete="name" required>
+            </label>
+            <label>
+              Teléfono
+              <input type="tel" name="telefono" autocomplete="tel">
+            </label>
+            <label>
+              Tema
+              <select name="tema">
+                <option>Daños y perjuicios</option>
+                <option>Accidente de tránsito</option>
+                <option>Derecho civil</option>
+                <option>Herencia o sucesión</option>
+                <option>Derecho ambiental</option>
+                <option>Otro tema</option>
+              </select>
+            </label>
+            <label>
+              Contame brevemente qué pasó
+              <textarea name="mensaje" rows="5" required></textarea>
+            </label>
+            <p class="form-error" id="form-error" role="alert" hidden>Completá tu nombre y contame brevemente qué pasó.</p>
+            <button type="submit" class="btn btn--primary btn--block">Enviar por WhatsApp</button>
+            <p class="small form-note">Se abre WhatsApp con tu mensaje ya escrito. Solo tenés que tocar Enviar.</p>
+          </form>
+        </div>
+
+        <!-- Preguntas frecuentes -->
+        <div class="faq" id="preguntas">
+          <header class="faq__head">
+            <h2>Preguntas frecuentes</h2>
+            <p>Si tenés otra duda, escribime y te respondo.</p>
+          </header>
+
+          <div class="faq__list">
+            <details>
+              <summary>¿Cuánto cuesta la primera consulta?</summary>
+              <p><mark class="todo">A definir: valor de la primera consulta o si es sin cargo.</mark> Antes de empezar cualquier trámite te digo por escrito cuánto cuesta, para que decidas con toda la información.</p>
+            </details>
+            <details>
+              <summary>Tuve un accidente, ¿hasta cuándo puedo reclamar?</summary>
+              <p>Depende del caso. En general, el plazo para reclamar los daños de un accidente es de tres años desde el hecho, pero hay situaciones con plazos más cortos (por ejemplo, algunos reclamos a tu propia aseguradora). Lo mejor es consultar cuanto antes para no perder pruebas ni plazos.</p>
+            </details>
+            <details>
+              <summary>¿Tengo que pagar algo por adelantado para hacer un reclamo?</summary>
+              <p><mark class="todo">A definir: forma de cobro de honorarios (por ejemplo, porcentaje al final del juicio o pago por etapa).</mark> En la primera charla te explico cómo se cobran los honorarios en tu caso.</p>
+            </details>
+            <details>
+              <summary>¿Puedo hacer la consulta sin ir al estudio?</summary>
+              <p>Sí. Podemos hablar por WhatsApp, por teléfono o por videollamada, y me podés mandar fotos o PDF de tus papeles. Atiendo consultas virtuales en toda la provincia de Santa Fe.</p>
+            </details>
+            <details>
+              <summary>¿Qué papeles tengo que llevar?</summary>
+              <p>Todo lo que tengas relacionado con el problema: DNI, contratos, recibos, fotos, mensajes, denuncias, certificados médicos o la póliza del seguro. Si no sabés si algo sirve, traelo igual.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Pie ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>Damián Arce, abogado. Matrícula <mark class="todo">a completar</mark>, Colegio de la Abogacía de Santa Fe.</p>
+      <p>La información de este sitio es orientativa y no reemplaza una consulta profesional.</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="#" class="wa-float js-wa" data-wa-text="Hola Damián, quería hacerte una consulta." aria-label="Escribir por WhatsApp">
+    <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+  </a>
+
+  <!-- Íconos -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icon-wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.24 8.22Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.35-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/>
+    </symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

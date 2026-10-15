@@ -1,0 +1,366 @@
+<title>Prototipo Damián Arce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<style>
+  /* Prototipo solo para computadora: barra fija + sección de inicio del sitio de Damián Arce.
+     Un solo aspecto (barra blanca, inicio verde oscuro), igual que el sitio real. */
+  :root {
+    --green-900: #1d4f45;
+    --green-700: #245f53;
+    --gold-soft: #cfb27e;
+    --gold-hover: #dcc497;
+    --wa: #25d366;
+    --ink: #1d2a2e;
+    --ink-soft: #4a5558;
+    --line: #dfe2de;
+    --white: #ffffff;
+    --on-dark: #dfe9e5;
+    --veil: 17, 46, 40;
+
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    --container: 1080px;
+    --header-h: 68px;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--green-900);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  h1 { font-family: var(--serif); line-height: 1.15; margin: 0; }
+  p { margin: 0; }
+
+  .container { width: 100%; max-width: var(--container); margin: 0 auto; padding-inline: 24px; }
+  .icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* Botones */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 20px; border: 0; border-radius: 6px;
+    font: 500 0.95rem/1 var(--sans); text-decoration: none; cursor: pointer;
+    transition: background-color .2s;
+  }
+  .btn--primary { background: var(--green-700); color: var(--white); }
+  .btn--primary:hover { background: var(--green-900); }
+  .btn--sm { padding: 9px 14px; font-size: 0.875rem; }
+  .btn--gold { background: var(--gold-soft); color: var(--green-900); font-weight: 600; }
+  .btn--gold:hover { background: var(--gold-hover); }
+  .btn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+
+  /* Barra fija */
+  .header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+  .header__inner { display: flex; align-items: center; gap: 24px; height: var(--header-h); }
+  .brand { display: flex; align-self: stretch; margin-bottom: -1px; }
+  .brand__logo { width: 88px; height: 100%; object-fit: cover; }
+  .proto-tag {
+    margin-left: auto;
+    font-size: 0.78rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* Inicio */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden;
+    min-height: calc(100vh - var(--header-h));
+    display: flex; flex-direction: column;
+    padding-block: 48px 40px;
+    background: var(--green-900);
+    color: var(--on-dark);
+  }
+  .hero__slides { position: absolute; inset: 0; z-index: -2; }
+  .hero__slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0; transform: scale(1.08);
+    transition: opacity 1.6s ease, transform 8s linear;
+  }
+  .hero__slide.is-active { opacity: 1; transform: scale(1); }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(var(--veil), .95) 0%, rgba(var(--veil), .86) 45%, rgba(var(--veil), .62) 100%),
+      linear-gradient(0deg, rgba(var(--veil), .6) 0%, rgba(var(--veil), 0) 40%);
+  }
+
+  .hero__title { text-align: center; margin-bottom: 24px; }
+  .hero__title h1 {
+    font-size: 3.6rem; font-weight: 500; letter-spacing: .02em;
+    color: var(--gold-soft); text-wrap: balance;
+  }
+  .hero__title p {
+    margin-top: 6px;
+    font-family: var(--serif); font-size: 1.3rem;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--gold-soft); opacity: .85;
+  }
+
+  /* El título queda arriba; el resto se centra en el espacio que sobra debajo */
+  .hero__grid {
+    flex: 1;
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center;
+  }
+  .hero__text { min-width: 0; }
+
+  /* Práctica actual + barrita dorada */
+  .practice-label { display: inline-grid; margin-bottom: 14px; }
+  .practice-label__name {
+    grid-area: 1 / 1;
+    font: 500 0.82rem/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--white);
+    transition: opacity .6s ease, transform .6s ease, visibility .6s;
+  }
+  .practice-label__name.is-off { opacity: 0; visibility: hidden; transform: translateY(6px); }
+  .practice-label__bar {
+    grid-area: 2 / 1; position: relative; height: 2px; margin-top: 10px;
+    background: rgba(255, 255, 255, .18); overflow: hidden;
+  }
+  .practice-label__fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--gold-soft); }
+
+  .topic-card { max-width: 560px; }
+  .topic-card__title {
+    font-family: var(--serif); font-size: 1.75rem; color: var(--white); margin-bottom: 18px;
+  }
+  .chip-groups { display: grid; margin-bottom: 24px; }
+  .chips {
+    grid-area: 1 / 1;
+    display: flex; flex-wrap: wrap; align-content: flex-start; gap: 10px;
+    transition: opacity .6s ease, visibility .6s;
+  }
+  .chips.is-off { opacity: 0; visibility: hidden; }
+  .chip {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, .45); border-radius: 999px;
+    background: rgba(255, 255, 255, .06);
+    font: 400 0.88rem/1.3 var(--sans); color: var(--white);
+    text-decoration: none; cursor: pointer;
+    transition: background-color .15s, color .15s, border-color .15s;
+  }
+  .chip:hover { background: var(--white); border-color: var(--white); color: var(--green-900); }
+  .chip:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+
+  .hero__photo { margin: 0; justify-self: end; max-width: 360px; width: 100%; }
+  .hero__photo-frame { position: relative; margin: 0 24px 24px 0; }
+  .hero__photo-frame::before {
+    content: ""; position: absolute; inset: 24px -24px -24px 24px;
+    border: 1px solid var(--gold-soft); border-radius: 8px;
+  }
+  .hero__photo-frame img {
+    position: relative; border-radius: 8px; background: var(--white);
+    aspect-ratio: 1 / 1; object-fit: cover;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+  }
+
+  /* Botón flotante de WhatsApp */
+  .wa-float {
+    position: fixed; right: 24px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 60;
+    display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+    background: var(--wa); color: var(--white);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.06); }
+  .wa-float .icon { width: 28px; height: 28px; }
+
+  /* Versión solo para computadora: en pantallas chicas se avisa en lugar de mostrar el diseño */
+  .desktop-only { display: none; }
+  @media (max-width: 900px) {
+    .header, .hero, .wa-float { display: none; }
+    .desktop-only {
+      display: grid; place-items: center; min-height: 100vh;
+      padding-inline: 24px; text-align: center; color: var(--on-dark);
+    }
+    .desktop-only h1 { color: var(--gold-soft); font-size: 2.2rem; font-weight: 500; }
+    .desktop-only p { margin-top: 12px; max-width: 32ch; margin-inline: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#inicio" class="brand" aria-label="Damián Arce, abogado">
+      <img src="assets/img/logo-franja.jpg" alt="Logo de Damián Arce" class="brand__logo" width="88" height="69">
+    </a>
+    <span class="proto-tag">Prototipo · Sección inicio</span>
+    <a href="#" class="btn btn--primary btn--sm js-wa" data-wa-text="Hola Damián, quería hacerte una consulta.">
+      <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+      Consultar
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="hero__slides" aria-hidden="true">
+      <div class="hero__slide is-active" style="background-image: url('assets/img/hero-civil.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('assets/img/hero-danos.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('assets/img/hero-ambiental.jpg')"></div>
+    </div>
+
+    <header class="container hero__title">
+      <h1>Damián Arce</h1>
+      <p>Abogado</p>
+    </header>
+
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <div class="topic-card">
+          <div class="practice-label">
+            <span class="practice-label__name">Derecho civil</span>
+            <span class="practice-label__name is-off">Daños y perjuicios</span>
+            <span class="practice-label__name is-off">Derecho ambiental</span>
+            <span class="practice-label__bar" aria-hidden="true"><span class="practice-label__fill"></span></span>
+          </div>
+          <p class="topic-card__title">Asesoramiento Inmediato</p>
+          <div class="chip-groups">
+            <div class="chips" aria-label="Consultas de derecho civil" data-practice="Derecho civil">
+              <a class="chip" href="#">¿Cómo hago un contrato de alquiler?</a>
+              <a class="chip" href="#">¿Me deben plata, cómo la cobro?</a>
+              <a class="chip" href="#">¿Cómo inicio una sucesión?</a>
+              <a class="chip" href="#">¿Cómo hago un desalojo?</a>
+            </div>
+            <div class="chips is-off" aria-label="Consultas de daños y perjuicios" data-practice="Daños y perjuicios">
+              <a class="chip" href="#">¿Me chocaron, qué puedo reclamar?</a>
+              <a class="chip" href="#">¿El seguro no me paga, qué hago?</a>
+              <a class="chip" href="#">¿Me dañaron la casa o el auto?</a>
+              <a class="chip" href="#">¿Puedo reclamar por una lesión?</a>
+            </div>
+            <div class="chips is-off" aria-label="Consultas de derecho ambiental" data-practice="Derecho ambiental">
+              <a class="chip" href="#">¿Hay contaminación cerca de mi casa?</a>
+              <a class="chip" href="#">¿Qué hago con ruidos u olores molestos?</a>
+              <a class="chip" href="#">¿Fumigan cerca de casa, qué puedo hacer?</a>
+              <a class="chip" href="#">¿Qué es un amparo ambiental?</a>
+            </div>
+          </div>
+          <a href="#" class="btn btn--gold" id="hero-wa">
+            <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+            Realizar otra consulta
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero__photo">
+        <div class="hero__photo-frame">
+          <img src="assets/img/damian-retrato.jpg" alt="Retrato de Damián Arce, abogado" width="1254" height="1254">
+        </div>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<div class="desktop-only">
+  <div>
+    <h1>Damián Arce</h1>
+    <p>Este prototipo está pensado para verse en una computadora. Abrí el enlace desde una pantalla más grande.</p>
+  </div>
+</div>
+
+<a href="#" class="wa-float js-wa" data-wa-text="Hola Damián, quería hacerte una consulta." aria-label="Escribir por WhatsApp">
+  <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="icon-wa" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.24 8.22Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.35-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/>
+  </symbol>
+</svg>
+
+<script>
+  // Número de WhatsApp de Damián (+54 9 342 510-2769)
+  const WHATSAPP_NUMBER = "5493425102769";
+  const waLink = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+  document.querySelectorAll(".js-wa").forEach((link) => {
+    link.href = waLink(link.dataset.waText);
+    link.target = "_blank";
+    link.rel = "noopener";
+  });
+
+  // Carrusel: imagen, nombre de la práctica y preguntas cambian juntos
+  const SLIDE_MS = 7000;
+  const slides = document.querySelectorAll(".hero__slide");
+  const practiceNames = document.querySelectorAll(".practice-label__name");
+  const barFill = document.querySelector(".practice-label__fill");
+  const chipGroups = document.querySelectorAll(".chip-groups .chips");
+  const heroWa = document.getElementById("hero-wa");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let currentSlide = 0;
+  let slideTimer = null;
+  let barAnimation;
+
+  function restartBar() {
+    if (barAnimation) barAnimation.cancel();
+    if (!slideTimer) {
+      barFill.style.width = "100%";
+      return;
+    }
+    barFill.style.width = "";
+    barAnimation = barFill.animate([{ width: "0%" }, { width: "100%" }], {
+      duration: SLIDE_MS, easing: "linear", fill: "forwards",
+    });
+  }
+
+  function updateHeroLink() {
+    const practice = chipGroups[currentSlide].dataset.practice.toLowerCase();
+    heroWa.href = waLink(`Hola Damián, quería hacerte una consulta sobre ${practice}.`);
+    heroWa.target = "_blank";
+    heroWa.rel = "noopener";
+  }
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle("is-active", i === currentSlide));
+    practiceNames.forEach((n, i) => n.classList.toggle("is-off", i !== currentSlide));
+    chipGroups.forEach((g, i) => {
+      g.classList.toggle("is-off", i !== currentSlide);
+      g.setAttribute("aria-hidden", String(i !== currentSlide));
+      g.querySelectorAll(".chip").forEach((c) => (c.tabIndex = i === currentSlide ? 0 : -1));
+    });
+    updateHeroLink();
+    restartBar();
+  }
+
+  function startSlides() {
+    if (reduceMotion) return restartBar();
+    clearInterval(slideTimer);
+    slideTimer = setInterval(() => showSlide(currentSlide + 1), SLIDE_MS);
+    restartBar();
+  }
+
+  // Al consultar se detiene el carrusel: al volver de WhatsApp se ve la misma práctica
+  function stopSlides() {
+    clearInterval(slideTimer);
+    slideTimer = null;
+    restartBar();
+  }
+
+  chipGroups.forEach((group) => {
+    const practice = group.dataset.practice.toLowerCase();
+    group.querySelectorAll(".chip").forEach((chip) => {
+      chip.href = waLink(`Hola Damián, quería hacerte una consulta sobre ${practice}: ${chip.textContent.trim()}`);
+      chip.target = "_blank";
+      chip.rel = "noopener";
+      chip.addEventListener("click", stopSlides);
+    });
+  });
+  heroWa.addEventListener("click", stopSlides);
+
+  showSlide(0);
+  startSlides();
+</script>

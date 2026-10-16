@@ -12,7 +12,7 @@ function openWhatsApp(text) {
 // Año del copyright del pie, siempre actualizado
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Enlaces de la barra: "Sobre mí" se centra con el nombre y "Contacto" con el contenido carrusel.
+// Enlaces de la barra: "Perfil" se centra con el nombre y "Contacto" con el contenido carrusel.
 // Solo en pantallas anchas; en las angostas los bloques van apilados y los enlaces quedan en los extremos.
 const navAlign = [
   [document.querySelector(".nav__link--left"), document.querySelector(".hero__title h1")],

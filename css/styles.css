@@ -128,7 +128,7 @@ mark.todo {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
-/* Tres columnas: Sobre mí a la izquierda, logo en el centro, Contacto a la derecha */
+/* Tres columnas: Perfil a la izquierda, logo en el centro, Contacto a la derecha */
 .header__inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -353,10 +353,10 @@ mark.todo {
 
 /* ---------- Secciones ---------- */
 .section { padding: 88px 0; }
-/* Sobre mí (incluye las áreas de práctica): 15px de aire con la barra fija y 50px al final */
-#sobre-mi {
+/* Perfil (incluye las áreas de práctica): 15px de aire con la barra fija y 50px al final */
+#perfil {
   padding: 15px 0 50px;
-  /* Ocupa al menos toda la pantalla debajo de la barra: al ir a Sobre mí no asoma Contacto */
+  /* Ocupa al menos toda la pantalla debajo de la barra: al ir a Perfil no asoma Contacto */
   min-height: calc(100vh - var(--header-h));
   min-height: calc(100svh - var(--header-h));
 }
@@ -421,7 +421,7 @@ mark.todo {
   background: var(--gold);
 }
 
-/* ---------- Sobre mí ---------- */
+/* ---------- Perfil ---------- */
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -440,14 +440,14 @@ mark.todo {
 }
 .facts dt { font-size: 0.85rem; color: var(--gold-soft); }
 .facts dd { margin: 0; color: #fff; }
-/* En Sobre mí el fondo es blanco: líneas grises y texto oscuro */
+/* En Perfil el fondo es blanco: líneas grises y texto oscuro */
 .about .facts { border-top-color: var(--line); }
 .about .facts > div { border-bottom-color: var(--line); }
 .about .facts dt { color: var(--gold); }
 .about .facts dd { color: var(--ink); }
 
 /* La foto no define la altura de la fila: se estira al alto del texto, desde la línea dorada
-   de "Sobre mí" hasta la última línea de los datos, y el marco queda cuadrado dentro de ese alto */
+   de "Perfil" hasta la última línea de los datos, y el marco queda cuadrado dentro de ese alto */
 .about__photo { position: relative; align-self: stretch; margin: 0; }
 .about__photo-frame {
   position: absolute;
@@ -546,12 +546,13 @@ mark.todo {
   .about,
   .contact { grid-template-columns: 1fr; gap: 48px; }
 
-  .hero { padding: 36px 0 32px; }
-  .hero > .hero__title { position: static; transform: none; margin-bottom: 32px; }
+  /* Apilado: el nombre y el contenido carrusel quedan juntos y centrados en la altura, sin huecos */
+  .hero { padding: 36px 0 32px; justify-content: center; gap: 48px; }
+  .hero > .hero__title { position: static; transform: none; margin-bottom: 0; }
   .hero::before { background: rgba(17, 46, 40, .88); }
-  .hero__grid { justify-items: start; }
-  /* Apilado: la foto vuelve a tener su propio tamaño debajo del texto */
-  .about__photo { justify-self: start; max-width: 320px; width: 100%; }
+  .hero__grid { flex: none; justify-items: start; }
+  /* Apilado: la foto vuelve a tener su propio tamaño, centrada debajo del texto */
+  .about__photo { justify-self: center; max-width: 320px; width: 100%; }
   .about__photo-frame { position: relative; right: auto; margin-right: 24px; }
   .about__photo-frame img { height: auto; }
 
@@ -564,11 +565,70 @@ mark.todo {
   .section { padding: 64px 0; }
 
   .dash-list { grid-template-columns: 1fr; }
+
+  /* Pie: las tres líneas centradas, una debajo de la otra */
+  .footer__inner { flex-direction: column; align-items: center; text-align: center; }
 }
 
 @media (max-width: 480px) {
   .container { padding: 0 16px; }
   .contact__form { padding: 20px; }
+
+  /* Perfil compacto: al tocar "Perfil", desde la línea dorada hasta la base de la foto
+     llena la pantalla de un iPhone SE (375×667) y el resto queda para cuando se baja */
+  #perfil h2::before { margin-bottom: 14px; }
+  .about { gap: 16px; }
+  .about__text h2 { margin-bottom: 14px; font-size: 1.7rem; }
+  .about__text p { font-size: .95rem; line-height: 1.55; margin-bottom: 0; }
+  .about .facts { margin-top: 18px; }
+  .about .facts > div { grid-template-columns: 100px 1fr; gap: 10px; padding: 8px 0; font-size: .9rem; }
+  .about .facts dt { font-size: .8rem; }
+  .about__photo { max-width: 282px; }
+
+  /* Contacto: al tocar "Contacto", desde la línea dorada hasta la línea debajo de "24/7"
+     entra en la pantalla de un iPhone SE (375×667) */
+  #contacto { padding-top: 15px; }
+  .facts--dark > div { padding: 10px 0; }
+
+  /* Formulario más compacto: menos aire entre campos y cajas más bajas */
+  .contact { gap: 28px; }
+  .contact__form { padding: 16px; gap: 12px; }
+  .contact__form label { gap: 5px; font-size: .8rem; }
+  .contact__form input,
+  .contact__form select,
+  /* 16px justos: con menos, el iPhone hace zoom al tocar el campo */
+  .contact__form textarea { padding: 7px 10px; font-size: 16px; }
+  .contact__form textarea { min-height: 80px; height: 80px; }
+  .contact__form .btn { padding: 11px 16px; }
+  .form-note { font-size: .78rem; line-height: 1.45; }
+
+  /* Áreas de práctica más compactas: menos aire entre líneas, párrafos y listas */
+  #practicas .area { padding: 10px 0; gap: 4px; }
+  .area p { line-height: 1.45; margin-bottom: 4px; }
+  .dash-list { line-height: 1.45; gap: 2px; }
+  .dash-list li::before { top: .72em; }
+
+  /* Nombre centrado en la pantalla; la barra dorada pasa de vertical a horizontal,
+     debajo de "Abogado" y con el mismo largo que la palabra */
+  .hero > .hero__title { justify-content: center; }
+  .hero__title::after { display: none; }
+  .hero__title p {
+    position: relative;
+    padding-bottom: 12px;
+    /* El tono suave va en el color y no en la opacidad, así la línea queda con el dorado pleno */
+    opacity: 1;
+    color: rgba(207, 178, 126, .85);
+  }
+  /* De la primera a la última letra: descuenta el espaciado de .3em de cada lado */
+  .hero__title p::after {
+    content: "";
+    position: absolute;
+    left: .3em;
+    right: .3em;
+    bottom: 0;
+    height: 2px;
+    background: var(--gold-soft);
+  }
   .facts > div { grid-template-columns: 1fr; gap: 2px; }
 }
 

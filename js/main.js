@@ -92,11 +92,9 @@ function stopSlides() {
 const heroWa = document.getElementById("hero-wa");
 
 chipGroups.forEach((group) => {
-  const practice = group.dataset.practice.toLowerCase();
+  const practice = group.dataset.practice;
   group.querySelectorAll(".chip").forEach((chip) => {
     chip.href = waLink(`Hola Damián, quería hacerte una consulta sobre ${practice}: ${chip.textContent.trim()}`);
-    chip.target = "_blank";
-    chip.rel = "noopener";
     // Al volver de WhatsApp, la persona encuentra la misma práctica en pantalla
     chip.addEventListener("click", stopSlides);
   });
@@ -104,10 +102,8 @@ chipGroups.forEach((group) => {
 
 // Botón dorado "Otra consulta": consulta general sobre la práctica que se está mostrando
 function updateHeroLink() {
-  const practice = chipGroups[currentSlide].dataset.practice.toLowerCase();
+  const practice = chipGroups[currentSlide].dataset.practice;
   heroWa.href = waLink(`Hola Damián, quería hacerte una consulta sobre ${practice}.`);
-  heroWa.target = "_blank";
-  heroWa.rel = "noopener";
 }
 
 heroWa.addEventListener("click", stopSlides);

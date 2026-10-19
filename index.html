@@ -4,7 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Damián Arce | Abogado en Santa Fe</title>
-  <meta name="description" content="Damián Arce, abogado en Santa Fe. Daños y perjuicios, accidentes de tránsito, derecho civil y derecho ambiental. Consultas por WhatsApp.">
+  <meta name="description" content="Damián Arce, abogado en Santa Fe. Daños y Perjuicios, accidentes de tránsito, Derecho Civil y Derecho Ambiental. Consultas por WhatsApp.">
+  <link rel="canonical" href="https://www.damianarceabogado.com.ar/">
+
+  <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, Instagram, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Damián Arce, Abogado">
+  <meta property="og:title" content="Damián Arce | Abogado en Santa Fe">
+  <meta property="og:description" content="Derecho Civil, Daños y Perjuicios y Derecho Ambiental. Consultas por WhatsApp.">
+  <meta property="og:url" content="https://www.damianarceabogado.com.ar/">
+  <meta property="og:image" content="https://www.damianarceabogado.com.ar/assets/img/logo-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Logo de Damián Arce, abogado">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Datos del estudio para Google (búsquedas locales) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Attorney",
+    "name": "Damián Arce, Abogado",
+    "url": "https://www.damianarceabogado.com.ar/",
+    "image": "https://www.damianarceabogado.com.ar/assets/img/logo-512.png",
+    "logo": "https://www.damianarceabogado.com.ar/assets/img/logo-512.png",
+    "telephone": "+54 9 342 510-2769",
+    "email": "damian_arce@hotmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "San Jerónimo 3194, Piso 1, Oficina 7",
+      "addressLocality": "Santa Fe",
+      "addressRegion": "Santa Fe",
+      "addressCountry": "AR"
+    },
+    "areaServed": "Ciudad de Santa Fe y alrededores",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "knowsAbout": ["Derecho Civil", "Daños y Perjuicios", "Derecho Ambiental"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -35,9 +73,9 @@
     <section class="hero" id="inicio">
       <!-- Carrusel de fondo: una imagen por práctica -->
       <div class="hero__slides" aria-hidden="true">
-        <div class="hero__slide is-active" style="background-image: url('assets/img/hero-civil.jpg')"></div>
-        <div class="hero__slide" style="background-image: url('assets/img/hero-danos.jpg')"></div>
-        <div class="hero__slide" style="background-image: url('assets/img/hero-ambiental.jpg')"></div>
+        <div class="hero__slide is-active" style="background-image: url('assets/img/hero-civil.webp')"></div>
+        <div class="hero__slide" style="background-image: url('assets/img/hero-danos.webp')"></div>
+        <div class="hero__slide" style="background-image: url('assets/img/hero-ambiental.webp')"></div>
       </div>
 
       <header class="container hero__title">
@@ -57,29 +95,30 @@
               <span class="practice-label__bar" aria-hidden="true"><span class="practice-label__fill"></span></span>
             </div>
             <!-- Un grupo de preguntas por práctica; cambia junto con la imagen de fondo (mismo orden).
-                 Cada pregunta abre WhatsApp con esa consulta ya escrita (el enlace lo arma main.js). -->
+                 Cada pregunta abre WhatsApp con esa consulta ya escrita (main.js completa el mensaje;
+                 sin JavaScript igual abren el chat). -->
             <div class="chip-groups">
-              <div class="chips" aria-label="Consultas de derecho civil" data-practice="Derecho civil">
-                <a class="chip" href="#">¿Cómo hago un contrato de alquiler?</a>
-                <a class="chip" href="#">¿Cómo hago un Amparo?</a>
-                <a class="chip" href="#">¿Cómo inicio una sucesión?</a>
-                <a class="chip" href="#">¿Cómo hago un desalojo?</a>
+              <div class="chips" aria-label="Consultas de Derecho Civil" data-practice="Derecho Civil">
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un contrato de alquiler?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un amparo?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo inicio una sucesión?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un desalojo?</a>
               </div>
-              <div class="chips" aria-label="Consultas de daños y perjuicios" data-practice="Daños y perjuicios" hidden>
-                <a class="chip" href="#">¿Me chocaron, cómo puedo reclamar?</a>
-                <a class="chip" href="#">¿El seguro no me paga, qué hago?</a>
-                <a class="chip" href="#">¿Cómo reclamo un Accidente Laboral?</a>
-                <a class="chip" href="#">¿Puedo reclamar por un Daño Moral?</a>
+              <div class="chips" aria-label="Consultas de Daños y Perjuicios" data-practice="Daños y Perjuicios" hidden>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Me chocaron, cómo puedo reclamar?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿El seguro no me paga, qué hago?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo reclamo un accidente laboral?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Puedo reclamar por un daño moral?</a>
               </div>
-              <div class="chips" aria-label="Consultas de derecho ambiental" data-practice="Derecho ambiental" hidden>
-                <a class="chip" href="#">¿Qué hago ante un caso de contaminación de agua?</a>
-                <a class="chip" href="#">¿Qué hago con ruidos u olores molestos?</a>
-                <a class="chip" href="#">¿Fumigan cerca de casa, qué puedo hacer?</a>
-                <a class="chip" href="#">¿Qué es un amparo ambiental?</a>
+              <div class="chips" aria-label="Consultas de Derecho Ambiental" data-practice="Derecho Ambiental" hidden>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué hago ante un caso de contaminación de agua?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué hago con ruidos u olores molestos?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Fumigan cerca de casa, qué puedo hacer?</a>
+                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué es un amparo ambiental?</a>
               </div>
             </div>
             <div class="topic-card__actions">
-              <a href="#" class="btn btn--gold" id="hero-wa">
+              <a href="https://wa.me/5493425102769" target="_blank" rel="noopener" class="btn btn--gold" id="hero-wa">
                 <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
                 Realizar otra consulta
               </a>
@@ -109,7 +148,7 @@
 
           <figure class="about__photo">
             <div class="about__photo-frame">
-              <img src="assets/img/damian-retrato-recorte.png" alt="Retrato de Damián Arce, abogado" width="760" height="760" loading="lazy">
+              <img src="assets/img/damian-retrato-recorte.webp" alt="Retrato de Damián Arce, abogado" width="760" height="760" loading="lazy">
             </div>
           </figure>
         </div>
@@ -200,9 +239,9 @@
             <label>
               Tema
               <select name="tema">
-                <option>Derecho civil</option>
-                <option>Daños y perjuicios</option>
-                <option>Derecho ambiental</option>
+                <option>Derecho Civil</option>
+                <option>Daños y Perjuicios</option>
+                <option>Derecho Ambiental</option>
               </select>
             </label>
             <label>

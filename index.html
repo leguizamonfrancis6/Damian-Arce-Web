@@ -55,7 +55,6 @@
   <!-- ===== Encabezado ===== -->
   <header class="header">
     <div class="container header__inner">
-      <!-- Perfil a la izquierda, logo en el centro, Contacto a la derecha -->
       <nav class="nav">
         <a href="#perfil" class="nav__link nav__link--left">Perfil</a>
         <a href="#contacto" class="nav__link nav__link--right">Contacto</a>
@@ -84,45 +83,43 @@
       </header>
 
       <div class="container hero__grid">
-        <div class="hero__text">
-          <div class="topic-card">
-            <p class="topic-card__title">Asesoramiento Integral</p>
-            <!-- Práctica actual del carrusel: se muestra una sola y cambia junto con la imagen -->
-            <div class="practice-label">
-              <span class="practice-label__name">Derecho Civil</span>
-              <span class="practice-label__name" hidden>Daños y Perjuicios</span>
-              <span class="practice-label__name" hidden>Derecho Ambiental</span>
-              <span class="practice-label__bar" aria-hidden="true"><span class="practice-label__fill"></span></span>
+        <div class="topic-card">
+          <p class="topic-card__title">Asesoramiento Integral</p>
+          <!-- Práctica actual del carrusel: se muestra una sola y cambia junto con la imagen -->
+          <div class="practice-label">
+            <span class="practice-label__name">Derecho Civil</span>
+            <span class="practice-label__name" hidden>Daños y Perjuicios</span>
+            <span class="practice-label__name" hidden>Derecho Ambiental</span>
+            <span class="practice-label__bar" aria-hidden="true"><span class="practice-label__fill"></span></span>
+          </div>
+          <!-- Un grupo de preguntas por práctica; cambia junto con la imagen de fondo (mismo orden).
+               Cada pregunta abre WhatsApp con esa consulta ya escrita (main.js completa el mensaje;
+               sin JavaScript igual abren el chat). -->
+          <div class="chip-groups">
+            <div class="chips" role="group" aria-label="Consultas de Derecho Civil" data-practice="Derecho Civil">
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un contrato de alquiler?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un amparo?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo inicio una sucesión?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un desalojo?</a>
             </div>
-            <!-- Un grupo de preguntas por práctica; cambia junto con la imagen de fondo (mismo orden).
-                 Cada pregunta abre WhatsApp con esa consulta ya escrita (main.js completa el mensaje;
-                 sin JavaScript igual abren el chat). -->
-            <div class="chip-groups">
-              <div class="chips" aria-label="Consultas de Derecho Civil" data-practice="Derecho Civil">
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un contrato de alquiler?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un amparo?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo inicio una sucesión?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo hago un desalojo?</a>
-              </div>
-              <div class="chips" aria-label="Consultas de Daños y Perjuicios" data-practice="Daños y Perjuicios" hidden>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Me chocaron, cómo puedo reclamar?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿El seguro no me paga, qué hago?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo reclamo un accidente laboral?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Puedo reclamar por un daño moral?</a>
-              </div>
-              <div class="chips" aria-label="Consultas de Derecho Ambiental" data-practice="Derecho Ambiental" hidden>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué hago ante un caso de contaminación de agua?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué hago con ruidos u olores molestos?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Fumigan cerca de casa, qué puedo hacer?</a>
-                <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué es un amparo ambiental?</a>
-              </div>
+            <div class="chips" role="group" aria-label="Consultas de Daños y Perjuicios" data-practice="Daños y Perjuicios" hidden>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Me chocaron, cómo puedo reclamar?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿El seguro no me paga, qué hago?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Cómo reclamo un accidente laboral?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Puedo reclamar por un daño moral?</a>
             </div>
-            <div class="topic-card__actions">
-              <a href="https://wa.me/5493425102769" target="_blank" rel="noopener" class="btn btn--gold" id="hero-wa">
-                <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
-                Realizar otra consulta
-              </a>
+            <div class="chips" role="group" aria-label="Consultas de Derecho Ambiental" data-practice="Derecho Ambiental" hidden>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué hago ante un caso de contaminación de agua?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué hago con ruidos u olores molestos?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Fumigan cerca de casa, qué puedo hacer?</a>
+              <a class="chip" href="https://wa.me/5493425102769" target="_blank" rel="noopener">¿Qué es un amparo ambiental?</a>
             </div>
+          </div>
+          <div class="topic-card__actions">
+            <a href="https://wa.me/5493425102769" target="_blank" rel="noopener" class="btn btn--gold" id="hero-wa">
+              <svg class="icon" aria-hidden="true"><use href="#icon-wa"/></svg>
+              Realizar otra consulta
+            </a>
           </div>
         </div>
       </div>
@@ -153,58 +150,55 @@
           </figure>
         </div>
 
-        <!-- Áreas de práctica -->
-        <div class="practices" id="practicas">
-          <div class="areas">
-            <article class="area">
-              <h3>Daños y Perjuicios</h3>
-              <div>
-                <p>
-                  Cuando alguien te causa un daño, tenés derecho a una reparación. Analizo qué
-                  podés reclamar y lo llevo adelante ante el tercero.
-                </p>
-                <ul class="dash-list">
-                  <li>Accidentes de tránsito</li>
-                  <li>Accidentes laborales (ART)</li>
-                  <li>Daños en tu propiedad o bienes</li>
-                  <li>Lesiones y daño moral</li>
-                </ul>
-              </div>
-            </article>
+        <div class="areas" id="practicas">
+          <article class="area">
+            <h3>Daños y Perjuicios</h3>
+            <div>
+              <p>
+                Cuando alguien te causa un daño, tenés derecho a una reparación. Analizo qué
+                podés reclamar y lo llevo adelante ante el tercero.
+              </p>
+              <ul class="dash-list">
+                <li>Accidentes de tránsito</li>
+                <li>Accidentes laborales (ART)</li>
+                <li>Daños en tu propiedad o bienes</li>
+                <li>Lesiones y daño moral</li>
+              </ul>
+            </div>
+          </article>
 
-            <article class="area">
-              <h3>Derecho Civil</h3>
-              <div>
-                <p>
-                  Puedo asesorarte en los problemas legales de todos los días, como firmar un contrato
-                  o resolver un conflicto familiar de herencia.
-                </p>
-                <ul class="dash-list">
-                  <li>Contratos</li>
-                  <li>Amparos</li>
-                  <li>Sucesiones y herencias</li>
-                  <li>Desalojos</li>
-                </ul>
-              </div>
-            </article>
+          <article class="area">
+            <h3>Derecho Civil</h3>
+            <div>
+              <p>
+                Puedo asesorarte en los problemas legales de todos los días, como firmar un contrato
+                o resolver un conflicto familiar de herencia.
+              </p>
+              <ul class="dash-list">
+                <li>Contratos</li>
+                <li>Amparos</li>
+                <li>Sucesiones y herencias</li>
+                <li>Desalojos</li>
+              </ul>
+            </div>
+          </article>
 
-            <article class="area">
-              <h3>Derecho Ambiental</h3>
-              <div>
-                <p>
-                  El Artículo 41 de la Constitución Nacional reconoce el derecho de todos los habitantes
-                  a un ambiente sano, equilibrado y apto para el desarrollo humano. Represento a vecinos
-                  y comunidades frente a actividades que contaminan o afectan su calidad de vida.
-                </p>
-                <ul class="dash-list">
-                  <li>Contaminación de agua, aire o suelo</li>
-                  <li>Ruidos y olores molestos</li>
-                  <li>Fumigaciones cerca de viviendas</li>
-                  <li>Amparos ambientales</li>
-                </ul>
-              </div>
-            </article>
-          </div>
+          <article class="area">
+            <h3>Derecho Ambiental</h3>
+            <div>
+              <p>
+                El Artículo 41 de la Constitución Nacional reconoce el derecho de todos los habitantes
+                a un ambiente sano, equilibrado y apto para el desarrollo humano. Represento a vecinos
+                y comunidades frente a actividades que contaminan o afectan su calidad de vida.
+              </p>
+              <ul class="dash-list">
+                <li>Contaminación de agua, aire o suelo</li>
+                <li>Ruidos y olores molestos</li>
+                <li>Fumigaciones cerca de viviendas</li>
+                <li>Amparos ambientales</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </section>

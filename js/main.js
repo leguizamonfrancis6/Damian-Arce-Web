@@ -5,10 +5,6 @@ function waLink(text) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
-function openWhatsApp(text) {
-  window.open(waLink(text), "_blank", "noopener");
-}
-
 // Año del copyright del pie, siempre actualizado
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -76,7 +72,6 @@ function showSlide(index) {
 
 function startSlides() {
   if (reduceMotion) return restartBar();
-  clearInterval(slideTimer);
   slideTimer = setInterval(() => showSlide(currentSlide + 1), SLIDE_MS);
   restartBar();
 }
@@ -137,5 +132,5 @@ form.addEventListener("submit", (event) => {
   ];
   if (telefono) lines.push("", `Mi teléfono: ${telefono}`);
 
-  openWhatsApp(lines.join("\n"));
+  window.open(waLink(lines.join("\n")), "_blank", "noopener");
 });

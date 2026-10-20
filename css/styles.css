@@ -6,7 +6,6 @@
   --green-900: #1d4f45;
   --green-700: #245f53;
   --green-600: #2c6f61;
-  --green-100: #e3ece8;
   --wa: #25d366;
 
   --gold: #a8854f;       /* sobre fondos claros */
@@ -21,8 +20,6 @@
   --white: #ffffff;
   --dark: #1b2a33;
   --dark-2: #22343e;
-
-  --todo: #fdf0a6;
 
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -57,7 +54,6 @@ h1, h2, h3 {
   margin: 0;
   color: var(--ink);
 }
-h1 { font-size: clamp(2.4rem, 5.2vw, 3.6rem); letter-spacing: -0.01em; }
 h2 { font-size: clamp(1.8rem, 3.2vw, 2.25rem); }
 h3 { font-size: 1.25rem; }
 
@@ -70,29 +66,7 @@ p { margin: 0 0 1em; }
   padding: 0 24px;
 }
 
-.muted { color: var(--muted); }
-
-/* Oculto a la vista, visible para lectores de pantalla y buscadores */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 .small { font-size: 0.85rem; }
-
-/* Datos pendientes de completar (resaltados como en el boceto) */
-mark.todo {
-  background: var(--todo);
-  color: #4a3f00;
-  padding: 0 4px;
-  border-radius: 3px;
-}
 
 .icon { width: 18px; height: 18px; flex-shrink: 0; }
 
@@ -108,13 +82,12 @@ mark.todo {
   font: 500 0.95rem/1 var(--sans);
   text-decoration: none;
   cursor: pointer;
-  transition: background-color .2s, transform .2s;
+  transition: background-color .2s;
 }
 .btn--primary { background: var(--green-700); color: #fff; }
 .btn--primary:hover { background: var(--green-900); }
-.btn--sm { padding: 9px 14px; font-size: 0.875rem; }
 .btn--block { width: 100%; }
-.btn:focus-visible, .chip:focus-visible {
+.btn:focus-visible {
   outline: 2px solid var(--green-600);
   outline-offset: 2px;
 }
@@ -200,13 +173,10 @@ mark.todo {
   color: #dfe9e5;
 }
 .hero > .container { flex-shrink: 0; }
-.hero__grid { flex: 1; }
 
 /* Nombre arriba del hero, alineado a la izquierda con la franja verde del logo
    (usa el ancho normal del sitio, igual que la barra) */
 .hero > .hero__title {
-  max-width: var(--container);
-  margin-bottom: 24px;
   /* Fuera del flujo y centrado en la altura del hero, a la izquierda del contenido carrusel */
   position: absolute;
   top: 50%;
@@ -272,9 +242,9 @@ mark.todo {
 }
 
 .hero__grid {
+  flex: 1;
   display: grid;
   align-items: center;
-  /* La consulta rápida queda del lado derecho */
   justify-items: end;
 }
 
@@ -322,7 +292,6 @@ mark.todo {
 .chip-groups { display: grid; margin-bottom: 24px; }
 .chips {
   grid-area: 1 / 1;
-  /* Las preguntas van en lista, una debajo de la otra */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -338,7 +307,6 @@ mark.todo {
   font: 400 0.88rem/1.3 var(--sans);
   color: #fff;
   text-decoration: none;
-  cursor: pointer;
   backdrop-filter: blur(2px);
   transition: background-color .15s, color .15s, border-color .15s;
 }
@@ -361,16 +329,7 @@ mark.todo {
   min-height: calc(100svh - var(--header-h));
 }
 
-/* Áreas de práctica, debajo del texto y la foto */
-#practicas {
-  /* 10px entre la base del marco de la foto y la línea que abre la lista de áreas */
-  margin-top: 10px;
-}
-/* La misma distancia entre cada área y las líneas que la separan */
-#practicas .area { padding: 15px 0; }
 .section--white { background: var(--white); }
-.section--green { background: var(--green-700); color: #e8f0ed; }
-.section--green h2, .section--green h3 { color: #fff; }
 .section--dark { background: var(--dark); color: #d9e0e3; }
 .section--dark h2 { color: #fff; }
 
@@ -383,19 +342,16 @@ mark.todo {
   margin-bottom: 18px;
   background: var(--gold);
 }
-.section--green h2::before,
 .section--dark h2::before { background: var(--gold-soft); }
 
-.section__head { max-width: 560px; margin-bottom: 48px; }
-.section__head h2 { margin-bottom: 14px; }
-
 /* ---------- Áreas ---------- */
-.areas { border-top: 1px solid var(--line); }
+/* 10px entre la base del marco de la foto y la línea que abre la lista */
+.areas { margin-top: 10px; border-top: 1px solid var(--line); }
 .area {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 32px;
-  padding: 40px 0;
+  padding: 15px 0;
   border-bottom: 1px solid var(--line);
 }
 .area h3 { color: var(--green-700); }
@@ -548,7 +504,7 @@ mark.todo {
 
   /* Apilado: el nombre y el contenido carrusel quedan juntos y centrados en la altura, sin huecos */
   .hero { padding: 36px 0 32px; justify-content: center; gap: 48px; }
-  .hero > .hero__title { position: static; transform: none; margin-bottom: 0; }
+  .hero > .hero__title { position: static; transform: none; }
   .hero::before { background: rgba(17, 46, 40, .88); }
   .hero__grid { flex: none; justify-items: start; }
   /* Apilado: la foto vuelve a tener su propio tamaño, centrada debajo del texto */
@@ -590,7 +546,6 @@ mark.todo {
   #contacto { padding-top: 15px; }
   .facts--dark > div { padding: 10px 0; }
 
-  /* Formulario más compacto: menos aire entre campos y cajas más bajas */
   .contact { gap: 28px; }
   .contact__form { padding: 16px; gap: 12px; }
   .contact__form label { gap: 5px; font-size: .8rem; }
@@ -603,7 +558,7 @@ mark.todo {
   .form-note { font-size: .78rem; line-height: 1.45; }
 
   /* Áreas de práctica más compactas: menos aire entre líneas, párrafos y listas */
-  #practicas .area { padding: 10px 0; gap: 4px; }
+  .area { padding: 10px 0; gap: 4px; }
   .area p { line-height: 1.45; margin-bottom: 4px; }
   .dash-list { line-height: 1.45; gap: 2px; }
   .dash-list li::before { top: .72em; }

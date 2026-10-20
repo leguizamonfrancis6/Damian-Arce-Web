@@ -1,6 +1,6 @@
 # Damián Arce · Abogado
 
-Sitio web profesional para un abogado de Santa Fe, Argentina. Es una landing de una sola página pensada para un objetivo concreto: que la persona que llega con un problema legal termine escribiendo por WhatsApp, con la consulta ya redactada.
+Sitio web profesional para un abogado de Santa Fe, Argentina. Es una landing de una sola página pensada para un objetivo concreto: que la persona que ingresa al sitio tenga información directa de las 3 Áreas de Práctica y pueda contactarse vía WhatsApp de manera accesible y con la consulta ya redactada.
 
 **🔗 En vivo: [www.damianarceabogado.com.ar](https://www.damianarceabogado.com.ar)**
 
